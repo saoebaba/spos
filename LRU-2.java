@@ -2,13 +2,6 @@
  /* 
  */
 package LRU;
-/**------------------------------------------------------------------////
- * @author ASUS		/*	
-							Name :- Shivam Bendre
-							Roll No:- COTA16 
-							Division:- "A1"
-						*/  //////LRU PROGRAM
-/*		-------------------------------------------------------------*////////
 import java.util.Deque;  
 import java.util.HashMap;  
 import java.util.LinkedList;  
