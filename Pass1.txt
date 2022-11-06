@@ -1,12 +1,13 @@
+package saap1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.String;
 
-class SymTab
+class pass1
 {
     public static void main(String args[])throws Exception
     {
-        FileReader FP=new FileReader("C:\\Users\\Dell\\OneDrive\\Desktop\\input.txt");
+        FileReader FP=new FileReader("C:\\Users\\Acer\\eclipse-workspace\\PASS1\\input.txt");
         BufferedReader bufferedReader = new BufferedReader(FP);
 
         String line=null;
@@ -153,3 +154,4 @@ class SymTab
         bufferedReader.close();
     }
 }
+
