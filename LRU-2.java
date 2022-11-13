@@ -1,69 +1,58 @@
-/**/
- /* 
- */
-package LRU;
-import java.util.Deque;  
-import java.util.HashMap;  
-import java.util.LinkedList;  
-import java.util.Map;  
- class Cache   
-{  
-  int key;               
-  String value;           
- Cache(int key, String value) {  
-    this.key = key;  
-    this.value = value;  
-  }  
-}  
- public class LRU {  
- static Deque<Integer> q = new LinkedList<>();   
-  static Map<Integer, Cache> map = new HashMap<>();  
-  int CACHE_CAPACITY = 4;  
-  public String getElementFromCache(int key)   
-  {  
-   if(map.containsKey(key))   
-    {  
-      Cache current = map.get(key);  
-      q.remove(current.key);  
-      q.addFirst(current.key);  
-      return current.value;  
-    }   
-  return "Not exist";  
-  }  
- public void putElementInCache(int key, String value)   
-  {  
-    if(map.containsKey(key))   
-    {  
-      Cache curr = map.get(key);      
-      q.remove(curr.key);                   
-    }  
-    else   
-    {  
-      if(q.size() == CACHE_CAPACITY)   
-      {  
-        int temp = q.removeLast();    
-        map.remove(temp);  
-      }  
-    }  
-    Cache newItem = new Cache(key, value);  
-    q.addFirst(newItem.key);     
-    map.put(key, newItem);  
-  }  
-public static void main(String[] args)   
-  {  
-    LRU cache = new LRU();  
-    cache.putElementInCache(1, "Value_2");  
-    cache.putElementInCache(2, "Value_1");  
-    cache.putElementInCache(3, "Value_4");  
-    cache.putElementInCache(4, "Value_3");  
-    System.out.println(cache.getElementFromCache(2));  
-    System.out.println();    
-    System.out.println(q);  
-    System.out.println();  
-    System.out.println(cache.getElementFromCache(5));  
-    cache.putElementInCache(5,"Value_5");  
-    System.out.println();  
-    System.out.println(q);  
-    System.out.println();  
-   }  
- } 
+package LRUU;
+import java.util.*;
+class LRU
+{
+public static void main(String args[])
+{
+int n,m,i,j,mn,flag=0,pgfault=0,timestamp=0;
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter no of pages");
+n=sc.nextInt();
+System.out.println("enter page nos");
+int a[]=new int[n];
+for(i=0;i<n;i++)
+a[i]=sc.nextInt();
+System.out.println("Enter no of frames");
+m=sc.nextInt();
+int frm[]=new int[m];
+int ts[]=new int[m];
+for(i=0;i<m;i++)
+{
+frm[i]=a[i];
+ts[i]=timestamp++;
+}
+for(;i<n;i++)
+{
+for(j=0;j<m;j++)
+{
+if(frm[j]==a[i])
+{
+ts[j]=timestamp++;
+flag=1;
+break;
+}
+else
+flag=0;
+}
+if(flag==0)
+{
+mn=min(ts,m);
+frm[mn]=a[i];
+ts[mn]=timestamp++;
+pgfault++;
+}
+}
+pgfault=pgfault+m;
+System.out.println("least recently used(LRU) algorithm");
+System.out.println("page fault is:"+pgfault);
+System.out.println("page hits are:"+(n-pgfault));
+}
+static int min(int ts[],int m)
+{
+int i,mn=0;
+for(i=1;i<m;i++)
+if(ts[i]<ts[i-1])
+mn=i;
+return mn;
+}
+}
